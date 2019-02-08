@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+
+
+    <style>
+        body {
+            margin: 0;
+        }
+
+        img {
+            width: 100%;
+        }
+
+        .boks {
+            background-color: beige;
+            margin: 2vw 5vw;
+            padding: 2vw 5vw;
+
+        }
+
+        #info {
+            margin: 1vw;
+            display: grid;
+        }
+
+
+
+
+        @media only screen and (min-width: 550px) {
+
+            #info {
+                grid-template-columns: repeat(2, 1fr);
+
+            }
+
+            .boks {
+                margin: 2vw 2vw;
+                padding: 2vw 4vw;
+
+            }
+
+
+            @media only screen and (min-width: 1500px) {
+
+                #info {
+                    grid-template-columns: repeat(3, 1fr);
+
+                }
+
+                .boks {
+                    margin: 2vw 2vw;
+                    padding: 2vw 4vw;
+
+                }
+
+
+
+            }
+    </style>
+
+
+    <div id="info"></div>
+
+
+    <script>
+        let alInfo = [{
+            "overskrift": "ANDEN bringer ud",
+            "dato": "februar 8 19:00 - 21:00",
+            "sted": "Roskilde Kongrescenter",
+            "billede": "https://dit-roskilde.dk/wp-content/uploads/2018/12/47431438_10156693165339566_6081953937752064000_n-300x158.jpg",
+            "tekst": "Gimle og Roskilde Kongrescenter præsenterer: ANDEN bringer ud Klassisk stand - up med Anders Matthesen - lige til døren."
+        }, {
+            "overskrift": "PRIME IS GIVING Roskilde",
+            "dato": "februar 8 20:00 - februar 9 02:00",
+            "sted": "Gimle, Helligkorsvej 2 <br>Roskilde, 4000",
+            "billede": "https://dit-roskilde.dk/wp-content/uploads/2019/01/44641105_2110297402566133_8733494908955918336_n-300x157.jpg",
+            "tekst": "For tredje år i træk, er PRIME IS GIVING (tidl. Prime Is Coming) tilbage, med Deres velgørenhedsevent der sidste år samlede 35.000 kr. ind til Børnecancerfonden. I Roskilde sker det på Gimle. "
+        }, {
+            "overskrift": "Kaffesmagning og Foredrag",
+            "dato": "februar 9 15:15 - 17:30",
+            "sted": "Just Coffee, Frederiksborgvej 551 <br>Roskilde, 4000 Danmark",
+            "billede": "https://dit-roskilde.dk/wp-content/uploads/2017/09/abw-kaffe-cafe-300x200.jpg",
+            "tekst": "Just Coffee inviterer til foredrag og kaffesmagning på deres økologiske mikroristeri. "
+        }, {
+            "overskrift": "Svend, Knud og Valdemar",
+            "dato": "februar 9 16:00",
+            "sted": "Jyllinge Skole, Planetvej 30 4040 Danmark",
+            "billede": "https://dit-roskilde.dk/wp-content/uploads/2019/01/Billede1-1-300x200.jpg",
+            "tekst": "Lørdag d. 9. februar kl. 16,00 kan man opleve det historiske stykke Svend, Knud & Valdemar i en forrygende opsætning, på Jyllinge Skole."
+        }, {
+            "overskrift": "Børneyoga (6-8 ÅR)",
+            "dato": "februar 10 13:00 - 13:45",
+            "sted": "Gimle, Helligkorsvej 2 <br>Roskilde, 4000",
+            "billede": "https://dit-roskilde.dk/wp-content/uploads/2019/01/50411546_1604523156360591_7278755173306990592_n-300x300.jpg",
+            "tekst": "Børneyoga er også en rejse igennem et eventyrligt univers, hvor der leges med fysiske stillinger, åndedrætsøvelser, afspænding, små meditationer og ritualer. GIMLE tager nu børnene med på rejsen"
+        }];
+
+        document.addEventListener("DOMContentLoaded", start);
+
+
+
+        function start() {
+
+            console.log(`event: ${event.overskrift}`, `event: ${event.dato}`, `event: ${event.sted}`, `event: ${event.tekst}`);
+
+            const destination = document.querySelector("#info");
+
+            alInfo.forEach(event => {
+                destination.innerHTML += `<div class="boks"> <h2>${event.overskrift}</h2> <h3>Dato:${event.dato}</h3> <h4>Sted:${event.sted}</h4> <img src=${event.billede}> <p>${event.tekst}`;
+
+
+            })
+
+        }
+    </script>
+
+</body>
+
+</html>

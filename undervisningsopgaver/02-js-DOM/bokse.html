@@ -1,0 +1,48 @@
+<style>
+    .boks {
+        height: 20px;
+        background-color: aquamarine;
+        border: 1px solid black;
+        margin: 5px;
+    }
+
+</style>
+
+
+<div class="boks"></div>
+<div class="boks"></div>
+<div class="boks"></div>
+<div class="boks"></div>
+<div class="boks"></div>
+<div class="boks"></div>
+<div class="boks"></div>
+<div class="boks"></div>
+<div class="boks"></div>
+<div class="boks"></div>
+<div class="boks"></div>
+<div class="boks"></div>
+
+
+
+
+
+<script>
+    let bokse = document.querySelectorAll(".boks");
+
+    bokse.forEach(boks => {
+
+        boks.style.background = "green";
+
+        boks.addEventListener("click", skiftFarve => {
+            alert("hej");
+        })
+
+        boks.addEventListener("click", skiftFarve)
+
+    })
+
+    function skiftFarve() {
+        this.style.background = "blue";
+    }
+
+</script>
