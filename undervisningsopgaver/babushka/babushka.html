@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <title>Babushka</title>
+</head>
+
+<body>
+
+    <style>
+        body {
+            margin: 0;
+        }
+
+        img {
+            width: 100%;
+        }
+
+        .filter {
+            height: 2vw;
+            width: 5vw;
+        }
+
+
+        .sorter {
+            height: 2vw;
+            width: 7.615vw;
+        }
+
+
+        .billedespek {
+            height: 20vw;
+            overflow: hidden;
+        }
+
+        h2 {
+            font-family: 'Russo One', sans-serif;
+            letter-spacing: 0.15vw;
+            font-size: 5.5vw;
+        }
+
+
+        h3,
+        p {
+            font-size: 4vw;
+            font-family: 'Roboto', sans-serif;
+
+        }
+
+        .enkelt {
+            background-color: #ffd9d1;
+            margin: 2vw 5vw;
+        }
+
+        .tekst {
+            padding: 2vw 5vw;
+        }
+
+
+        .billedespek {
+            height: 50vw;
+            overflow: hidden;
+        }
+
+        #ret {
+            display: grid;
+            margin: 1vw;
+        }
+
+
+
+
+        @media only screen and (min-width: 700px) {
+
+            #ret {
+                grid-template-columns: repeat(2, 1fr);
+
+            }
+
+            .enkelt {
+                margin: 2vw 2vw
+            }
+
+
+            .billedespek {
+                height: 28vw;
+            }
+
+            .tekst {
+                ;
+                padding: 2vw 4vw;
+
+            }
+
+            h2 {
+
+                font-size: 3.5vw;
+            }
+
+
+            h3,
+            p {
+                font-size: 2.2vw;
+            }
+
+            .valgt {
+                background-color: red;
+            }
+
+
+            @media only screen and (min-width: 1300px) {
+
+                #ret {
+                    grid-template-columns: repeat(3, 1fr);
+
+                }
+
+                .enkelt {
+                    margin: 1vw 1vw
+                }
+
+                .tekst {
+                    padding: 1vw 2vw;
+
+                }
+
+                h2 {
+
+                    font-size: 2.2vw;
+                }
+
+
+                h3,
+                p {
+                    font-size: 1.5vw;
+                }
+
+                .billedespek {
+                    height: 20vw;
+                }
+    </style>
+
+    <div id="filtrer">
+        <button class="filter valgt" data-kategori="alle">Alle</button>
+        <button class="filter" data-kategori="forretter">Forretter</button>
+        <button class="filter" data-kategori="hovedretter">Hovedretter</button>
+        <button class="filter" data-kategori="desserter">Desserter</button>
+        <button class="filter" data-kategori="drikkevarer">Drikkevarer</button>
+        <button class="filter" data-kategori="sideorders">Side orders</button>
+    </div>
+
+    <div id="sortering">
+        <button class="sorter valgt a_z">Navn A til Å</button>
+        <button class="sorter z_a">Navn Å til A</button>
+        <button class="sorter lav_hoej">Pris lav til høj</button>
+        <button class="sorter hoej_lav">Pris høj til lav</button>
+    </div>
+
+    <h1>Alle</h1>
+    <div id="ret">
+
+    </div>
+
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", hentJson);
+        let alleRetter = [];
+        let filter = "alle";
+
+
+        hentJson();
+
+
+        async function hentJson() {
+
+            let myJson = await fetch("https://mandalskeawebspace.dk/claude_php/clean_up_spreadsheet.php?id=1jxxxFoWBuMJ1qhQ9BQIAyKHmP38XtAF9_sQr0xo5JLo");
+            console.log(myJson);
+            alleRetter = await myJson.json();
+            console.log(alleRetter);
+            /*alleRetter.sort((a, b) => {
+                return (a.type - b.type);
+            });*/
+
+            alleRetter.sort((a, b) => {
+                return a.kategori.localeCompare(b.kategori);
+            });
+
+            visRetter();
+        }
+
+
+
+        function visRetter() {
+
+            let destination = document.querySelector("#ret");
+            destination.innerHTML = "";
+            alleRetter.forEach(ret => {
+                if (filter == "alle" || /*betyder "eller"*/ filter == ret.kategori) {
+                    let template =
+                        `<div class="enkelt">
+                                <img class="billedespek" src=imgs/small/${ret.billede}-sm.jpg>
+                                <div class="tekst">
+                                <h2>${ret.navn}</h2>
+                                <h3>pris: ${ret.pris},-</h3>
+                                <p>${ret.kort}</p>
+                                </div>
+                         </div>`;
+
+                }
+
+            })
+
+        }
+
+
+        hentJson();
+
+
+
+        document.querySelectorAll(".filter").forEach(but => {
+            but.addEventListener("click", filtrering);
+
+        });
+
+
+        document.querySelectorAll(".sorter").forEach(but => {
+            but.addEventListener("click", sortering);
+
+        });
+
+
+
+        function filtrering() {
+            document.querySelectorAll(".filter").forEach(but => {
+                but.classList.remove("valgt");
+            });
+            document.querySelector("h1").textContent = this.textContent;
+            filter = this.getAttribute("data-kategori");
+            this.classList.add("valgt");
+            console.log(filter);
+            visRetter();
+        }
+
+
+        function sortering() {
+
+            document.querySelectorAll(".sorter").forEach(but => {
+                but.classList.remove("valgt");
+            });
+
+            this.classList.add("valgt");
+
+
+
+
+
+            if (this.classList.contains("a_z")) {
+                alleRetter.sort((a, b) => {
+                    return a.navn.localeCompare(b.navn);
+                });
+            } else if (this.classList.contains("z_a")) {
+
+                alleRetter.sort((b, a) => {
+                    return a.navn.localeCompare(b.navn);
+                });
+            } else if (this.classList.contains("lav_hoej")) {
+                alleRetter.sort((a, b) => {
+                    return (a.pris - b.pris);
+                });
+            } else if (this.classList.contains("hoej_lav")) {
+                alleRetter.sort((b, a) => {
+                    return (a.pris - b.pris);
+                });
+            }
+
+            visRetter();
+        }
+    </script>
+
+</body>
+
+</html>

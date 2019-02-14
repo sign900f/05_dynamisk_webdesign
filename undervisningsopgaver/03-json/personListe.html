@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>personer</title>
+</head>
+
+<body>
+
+    <style>
+        body {
+            margin: 0;
+
+            background-color: #f3dcf5;
+        }
+
+        img {
+            width: 100%;
+        }
+
+
+        a,
+        h2 {
+            font-family: sans-serif;
+        }
+
+        a {
+            font-size: 2vw;
+        }
+
+        .minepersoner {
+            margin: 2vw 5vw;
+            padding: 2vw 5vw;
+            border: 2px solid black;
+            border-radius: 1vw;
+            background-color: white;
+
+
+        }
+
+        #person {
+            display: grid;
+            margin: 1vw;
+        }
+
+
+
+
+        @media only screen and (min-width: 700px) {
+
+            #person {
+                grid-template-columns: repeat(2, 1fr);
+
+            }
+
+            .minepersoner {
+                margin: 2vw 2vw;
+                padding: 2vw 4vw;
+
+            }
+        }
+
+
+        @media only screen and (min-width: 1100px) {
+
+            #person {
+                grid-template-columns: repeat(3, 1fr);
+
+            }
+
+            .minepersoner {
+                margin: 1vw 1vw;
+                padding: 1vw 2vw;
+
+            }
+        }
+
+        @media only screen and (min-width: 1300px) {
+
+            #person {
+                grid-template-columns: repeat(4, 1fr);
+
+            }
+        }
+
+        @media only screen and (min-width: 1600px) {
+
+            #person {
+                grid-template-columns: repeat(5, 1fr);
+
+            }
+
+            .minepersoner {
+                margin: 1vw 1vw;
+                padding: 1vw 2vw;
+
+            }
+        }
+    </style>
+
+    <div id="person">
+
+    </div>
+
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", start);
+
+
+
+        function start() {
+
+            let allePersoner = [];
+            hentJson();
+
+
+            async function hentJson() {
+
+                let myJson = await fetch("https://mandalskeawebspace.dk/claude_php/clean_up_spreadsheet.php?id=1OLlD_GRoz71piHvnW306omRAyHS7vtLOILQt-K0YF_c");
+                console.log(myJson);
+                allePersoner = await myJson.json();
+                console.log(allePersoner);
+                visPersoner();
+            }
+
+            function visPersoner() {
+                console.log(`person: ${person.navn}`, `person: ${person.type}`, `person: ${person.levested}`);
+
+                const destination = document.querySelector("#person");
+
+                allePersoner.forEach(person => {
+                    destination.innerHTML +=
+                        ` <div
+                                       class="minepersoner">
+                                       <h2>${person.navn}</h2>
+                                       <img src=${person.billede}>
+                                       <a href="https://github.com/${person.github}">github</a>
+                                  </div>`;
+
+                });
+            }
+        }
+    </script>
+
+</body>
+
+</html>

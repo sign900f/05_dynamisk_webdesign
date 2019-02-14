@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>personer</title>
+</head>
+
+<body>
+
+    <style>
+        body {
+            margin: 0;
+
+            background-color: #f3dcf5;
+        }
+
+        img {
+            width: 100%;
+        }
+
+
+        a,
+        h2 {
+            font-family: sans-serif;
+        }
+
+        a {
+            font-size: 2vw;
+        }
+
+        .minepersoner {
+            margin: 2vw 5vw;
+            padding: 2vw 5vw;
+            border: 2px solid black;
+            border-radius: 1vw;
+            background-color: white;
+
+
+        }
+
+        #liste {
+            display: grid;
+            margin: 1vw;
+        }
+
+
+        .filter {
+            background-color: white;
+            width: 5vw;
+            height: 2vw;
+        }
+
+        .valgt {
+            background-color: red;
+        }
+
+
+
+
+        @media only screen and (min-width: 700px) {
+
+            #liste {
+                grid-template-columns: repeat(2, 1fr);
+
+            }
+
+            .minepersoner {
+                margin: 2vw 2vw;
+                padding: 2vw 4vw;
+
+            }
+        }
+
+
+        @media only screen and (min-width: 1100px) {
+
+            #liste {
+                grid-template-columns: repeat(3, 1fr);
+
+            }
+
+            .minepersoner {
+                margin: 1vw 1vw;
+                padding: 1vw 2vw;
+
+            }
+        }
+
+        @media only screen and (min-width: 1300px) {
+
+            #liste {
+                grid-template-columns: repeat(4, 1fr);
+
+            }
+        }
+
+        @media only screen and (min-width: 1600px) {
+
+            #liste {
+                grid-template-columns: repeat(5, 1fr);
+
+            }
+
+            .minepersoner {
+                margin: 1vw 1vw;
+                padding: 1vw 2vw;
+
+            }
+        }
+    </style>
+    <div id="menu">
+        <button class="filter valgt" data-hold="alle">Alle</button>
+        <button class="filter" data-hold="a">Hold A</button>
+        <button class="filter" data-hold="b">Hold B</button>
+    </div>
+    <h1>Alle</h1>
+    <div id="liste">
+    </div>
+
+
+
+    <script>
+        let allePersoner = [];
+        let filter = "alle";
+
+        document.addEventListener("DOMContentLoaded", hentJson);
+
+
+
+
+        hentJson();
+
+        async function hentJson() {
+            let jsonData = await fetch("https://mandalskeawebspace.dk/claude_php/clean_up_spreadsheet.php?id=1OLlD_GRoz71piHvnW306omRAyHS7vtLOILQt-K0YF_c");
+
+            console.log(jsonData);
+            allePersoner = await jsonData.json();
+            console.log(allePersoner);
+
+            visPersoner();
+        }
+
+
+
+
+
+
+
+
+        function visPersoner() {
+            let destination = document.querySelector("#liste");
+            destination.innerHTML = "";
+            allePersoner.forEach(person => {
+                if (filter == "alle" || /*betyder "eller"*/ filter == person.hold) {
+                    destination.innerHTML +=
+                        ` <div
+                                       class="minepersoner">
+                                       <h2>${person.navn}</h2>
+                                       <img src=${person.billede}>
+                                       <a href="https://github.com/${person.github}">github</a>
+                                  </div>`;
+
+
+                }
+            })
+        } //visPersoner slut
+
+        hentJson();
+
+        document.querySelectorAll(".filter").forEach(but => {
+            but.addEventListener("click", filtrering);
+        });
+
+        function filtrering() {
+            document.querySelectorAll(".filter").forEach(but => {
+                but.classList.remove("valgt");
+            });
+            document.querySelector("h1").textContent = this.textContent;
+            filter = this.getAttribute("data-hold");
+            this.classList.add("valgt");
+            console.log(filter);
+            visPersoner();
+        }
+    </script>
+
+</body>
+
+</html>

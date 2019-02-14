@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Caveat" rel="stylesheet">
+    <title>Babushka</title>
+
+    <style>
+        body {
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        img {
+            width: 100%;
+        }
+
+
+        header {
+            display: grid;
+        }
+
+        #basil {
+            background-image: url(imgs/basil.png);
+            width: 50vw;
+            height: 50vw;
+            background-size: 100%;
+            margin: 5vw 25vw;
+
+        }
+
+        #overskrift {
+            font-family: 'Caveat', cursive;
+            font-size: 10vw;
+            text-align: center;
+        }
+
+
+
+        .filter {
+            height: 5vw;
+            width: 10.7vw;
+        }
+
+
+        .sorter {
+            height: 5vw;
+            width: 17.1vw;
+        }
+
+        .filter,
+        .sorter {
+            background-color: white;
+            border-radius: 0.3vw;
+            margin: 0.5vw;
+            font-family: 'Dosis', sans-serif;
+            font-size: 2.2vw;
+            letter-spacing: 0.03vw;
+            padding: 0;
+            border-style: none;
+
+        }
+
+        #knapper {
+            margin: 0 12.2vw;
+        }
+
+        footer {
+            margin: 12vw 0 7vw 15vw;
+        }
+
+        .billedespek {
+            height: 20vw;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-family: 'Russo One', sans-serif;
+            letter-spacing: 0.15vw;
+            font-size: 6vw;
+            margin-left: 13vw;
+            margin-top: 10vw;
+
+        }
+
+
+        h2 {
+            font-family: 'Russo One', sans-serif;
+            letter-spacing: 0.15vw;
+            font-size: 5.5vw;
+        }
+
+
+        h3,
+        p {
+            font-size: 4vw;
+            font-family: 'Roboto', sans-serif;
+
+        }
+
+        .enkelt {
+            background-color: #ffd9d1;
+            margin: 2vw 5vw;
+        }
+
+        .tekst {
+            padding: 2vw 5vw;
+        }
+
+
+        .billedespek {
+            height: 50vw;
+            overflow: hidden;
+        }
+
+        #ret {
+            display: grid;
+            margin: 1vw 8vw;
+        }
+
+
+
+        .valgt {
+            border: 0.8px solid black;
+        }
+
+
+        @media only screen and (min-width: 700px) {
+
+
+            header {
+                display: grid;
+                grid-template-columns: repeat(2, 30% 70%);
+            }
+
+            #basil {
+                background-image: url(imgs/basil.png);
+                width: 30vw;
+                height: 30vw;
+                background-size: 100%;
+                margin: 3vw 0 0 6vw;
+            }
+
+            #overskrift {
+                font-family: 'Caveat', cursive;
+                font-size: 7vw;
+                margin-top: 20vw;
+                margin-left: -5vw;
+            }
+
+            #ret {
+                grid-template-columns: repeat(2, 1fr);
+
+            }
+
+            .enkelt {
+                margin: 2vw 2vw
+            }
+
+            .filter {
+                height: 3.2vw;
+                width: 12.2vw;
+            }
+
+
+            .sorter {
+                height: 3.2vw;
+                width: 19vw;
+            }
+
+            .filter,
+            .sorter {
+                font-size: 1.8vw;
+                letter-spacing: 0.03vw;
+
+            }
+
+            #knapper {
+                margin: 10vw 0 3vw 9.5vw;
+            }
+
+
+            .billedespek {
+                height: 28vw;
+            }
+
+            .tekst {
+                ;
+                padding: 2vw 4vw;
+
+            }
+
+            h1 {
+
+                font-size: 4vw;
+                margin: 0 10vw;
+            }
+
+            h2 {
+
+                font-size: 3.5vw;
+            }
+
+
+            h3,
+            p {
+                font-size: 2.2vw;
+            }
+
+            .valgt {
+                border: 1.5px solid black;
+            }
+
+            footer {
+                margin: 7vw 0 7vw 10vw;
+            }
+
+        }
+
+
+        @media only screen and (min-width: 1300px) {
+            header {
+                display: grid;
+                grid-template-columns: repeat(2, 30% 70%);
+            }
+
+            #basil {
+                background-image: url(imgs/basil.png);
+                width: 27vw;
+                height: 27vw;
+                background-size: 100%;
+                margin: 2vw 0 0 5vw;
+            }
+
+            #overskrift {
+                font-family: 'Caveat', cursive;
+                font-size: 7vw;
+                margin-top: 17vw;
+            }
+
+            #ret {
+                grid-template-columns: repeat(3, 1fr);
+
+            }
+
+            .enkelt {
+                margin: 1vw 1vw
+            }
+
+            .tekst {
+                padding: 1vw 2vw;
+
+            }
+
+            h2 {
+
+                font-size: 2.2vw;
+            }
+
+
+            h3,
+            p {
+                font-size: 1.5vw;
+            }
+
+            .billedespek {
+                height: 20vw;
+            }
+
+            #single {
+                top: 18.3vh;
+                left: 10vw;
+                width: 80vw;
+                height: 66.7vh;
+                position: fixed;
+                background-color: rgba(0, 0, 0, 0.52);
+                display: none;
+            }
+
+            #luk {
+                position: fixed;
+                top: 18.3vh;
+                right: 2vw;
+                padding: 2vw;
+                background-color: rgba(0, 0, 0, 0.44);
+                border-radius: 5vw;
+            }
+
+
+            .filter {
+                height: 3vw;
+                width: 7vw;
+            }
+
+
+            .sorter {
+                height: 3vw;
+                width: 11.1vw;
+            }
+
+            .filter,
+            .sorter {
+
+                font-size: 1.4vw;
+                letter-spacing: 0.03vw;
+
+            }
+
+            .valgt {
+                border: 1.8px solid black;
+            }
+
+
+
+
+            #luk button {
+                font-family: 'Russo One', sans-serif;
+                color: aliceblue;
+                font-size: 1.5vw;
+                background-color: rgba(0, 0, 0, 0);
+                border-color: rgba(0, 0, 0, 0);
+            }
+
+            footer {
+                margin: 7vw 0 5vw 9vw;
+            }
+
+
+        }
+    </style>
+</head>
+
+
+
+
+
+
+
+
+
+<body>
+
+    <header>
+        <div id="basil"></div>
+        <div id="overskrift">Restaurant Babushka</div>
+    </header>
+    <main>
+
+        <div id="knapper">
+            <div id="filtrer">
+                <button class="filter valgt" data-kategori="alle">Alle</button>
+                <button class="filter" data-kategori="forretter">Forretter</button>
+                <button class="filter" data-kategori="hovedretter">Hovedretter</button>
+                <button class="filter" data-kategori="desserter">Desserter</button>
+                <button class="filter" data-kategori="drikkevarer">Drikkevarer</button>
+                <button class="filter" data-kategori="sideorders">Side orders</button>
+            </div>
+
+            <div id="sortering">
+                <button class="sorter valgt a_z">Navn A til Å</button>
+                <button class="sorter z_a">Navn Å til A</button>
+                <button class="sorter lav_hoej">Pris lav til høj</button>
+                <button class="sorter hoej_lav">Pris høj til lav</button>
+            </div>
+        </div>
+        <h1>Alle</h1>
+        <div id="ret">
+
+        </div>
+    </main>
+    <footer>
+        <p>Restaurant Babushka <br>
+            Frodesgade 32 <br>
+            1940 København K<br><br>
+            <span style="color: #534088">babushka@mail.dk <br>
+                +45 34251617</span>
+
+    </footer>
+
+
+
+
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", hentJson);
+        let alleRetter = [];
+        let filter = "alle";
+
+        hentJson();
+
+
+        async function hentJson() {
+
+            let myJson = await fetch("https://mandalskeawebspace.dk/claude_php/clean_up_spreadsheet.php?id=1jxxxFoWBuMJ1qhQ9BQIAyKHmP38XtAF9_sQr0xo5JLo");
+            console.log(myJson);
+            alleRetter = await myJson.json();
+            console.log(alleRetter);
+            /*alleRetter.sort((a, b) => {
+                return (a.type - b.type);
+            });*/
+
+            alleRetter.sort((a, b) => {
+                return a.kategori.localeCompare(b.kategori);
+            });
+
+            visRetter();
+        }
+
+
+
+        function visRetter() {
+
+            let destination = document.querySelector("#ret");
+            destination.innerHTML = "";
+            alleRetter.forEach(ret => {
+                if (filter == "alle" || /*betyder "eller"*/ filter == ret.kategori) {
+                    let template =
+                        `<div class="enkelt">
+                                <img class="billedespek" src=imgs/small/${ret.billede}-sm.jpg>
+                                <div class="tekst">
+                                <h2>${ret.navn}</h2>
+                                <h3>pris: ${ret.pris}</h3>
+                                <p>${ret.kort}</p>
+                                </div>
+                         </div>`;
+
+                    destination.insertAdjacentHTML("beforeend", template);
+                    //destination.lastElementChild.addEventListener("hover", visSingle);
+                    destination.lastElementChild.addEventListener("click", () => {
+                        location.href = "single.html?id=" + ret.id;
+                    });
+
+
+                }
+            });
+
+        }
+
+
+
+
+        hentJson();
+
+
+
+        document.querySelectorAll(".filter").forEach(but => {
+            but.addEventListener("click", filtrering);
+
+        });
+
+
+        document.querySelectorAll(".sorter").forEach(but => {
+            but.addEventListener("click", sortering);
+
+        });
+
+
+
+        function filtrering() {
+            document.querySelectorAll(".filter").forEach(but => {
+                but.classList.remove("valgt");
+            });
+            document.querySelector("h1").textContent = this.textContent;
+            filter = this.getAttribute("data-kategori");
+            this.classList.add("valgt");
+            console.log(filter);
+            visRetter();
+        }
+
+
+        function sortering() {
+
+            document.querySelectorAll(".sorter").forEach(but => {
+                but.classList.remove("valgt");
+            });
+
+            this.classList.add("valgt");
+
+
+
+
+
+            if (this.classList.contains("a_z")) {
+                alleRetter.sort((a, b) => {
+                    return a.navn.localeCompare(b.navn);
+                });
+            } else if (this.classList.contains("z_a")) {
+
+                alleRetter.sort((b, a) => {
+                    return a.navn.localeCompare(b.navn);
+                });
+            } else if (this.classList.contains("lav_hoej")) {
+                alleRetter.sort((a, b) => {
+                    return (a.pris - b.pris);
+                });
+            } else if (this.classList.contains("hoej_lav")) {
+                alleRetter.sort((b, a) => {
+                    return (a.pris - b.pris);
+                });
+            }
+
+            visRetter();
+        }
+    </script>
+
+</body>
+
+</html>
